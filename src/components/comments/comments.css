@@ -1,0 +1,64 @@
+/* CSS FOR COMMENTS */
+
+/* Style for replies container */
+.replies-container {
+  margin-top: 0.75rem;
+  padding-left: 0.5rem;
+  border-left: 2px solid rgba(255, 105, 180, 0.2);
+  border-bottom-left-radius: 0.5rem;
+  overflow: visible;
+  display: block;
+  min-height: 10px;
+}
+
+/* Dark mode adjustment */
+@media (prefers-color-scheme: dark) {
+  .replies-container {
+    border-left-color: rgba(255, 105, 180, 0.3);
+  }
+}
+
+/* Highlight newly added replies */
+[id^="comment-"].bg-nuumi-pink\/10 {
+  animation: highlight-pulse 2s ease-in-out;
+  box-shadow: 0 0 10px rgba(255, 105, 180, 0.3);
+  border-radius: 0.5rem;
+}
+
+@keyframes highlight-pulse {
+  0%, 100% { background-color: rgba(255, 105, 180, 0.05); }
+  50% { background-color: rgba(255, 105, 180, 0.2); }
+}
+
+/* Make dropdown button more visible */
+button:has(.text-nuumi-pink) {
+  z-index: 10;
+  position: relative;
+}
+
+/* Animate the dropdown chevron */
+.animate-bounce {
+  animation: bounce 1s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-25%); }
+}
+
+/* Add a subtle glow to the NEW badge */
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* Ensure comments are always visible */
+.comment-input-container, .replies-container {
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
