@@ -296,11 +296,17 @@ const AIMealPlanner: React.FC<AIMealPlannerProps> = () => {
 
   return (
     <div className="min-h-screen bg-background pb-20">
-      <Header
-        title="AI Meal Planner"
-        showBackButton={true}
-        onBackClick={() => navigate(-1)}
-      />
+      <div className="bg-background sticky top-0 z-10 w-full flex items-center py-4 px-4 shadow-sm">
+        <div className="flex items-center">
+          <button
+            onClick={() => navigate(-1)}
+            className="mr-2 rounded-full h-10 w-10 flex items-center justify-center hover:bg-hover transition-colors"
+          >
+            <ChevronLeft className="h-6 w-6" />
+          </button>
+          <h1 className="text-lg font-semibold">AI Meal Planner</h1>
+        </div>
+      </div>
 
       <div className="max-w-md mx-auto px-4">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
