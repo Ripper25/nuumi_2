@@ -1,0 +1,342 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Base colors */
+    --background: 0 0% 7%;
+    --foreground: 0 0% 98%;
+
+    --card: 0 0% 10%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 0 0% 10%;
+    --popover-foreground: 0 0% 98%;
+
+    /* Theme color - will be dynamically changed */
+    --nuumi-pink: #FF69B4; /* Default pink */
+
+    /* Convert hex to HSL for shadcn variables */
+    --primary: 330 84% 70%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 240 4% 16%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 70%;
+
+    --accent: 330 84% 70%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 20%;
+    --input: 0 0% 15%;
+    --ring: 330 84% 70%;
+
+    --radius: 1rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Override default button hover styles */
+  .dark-mode button[class*="hover:bg-secondary"]:hover {
+    background-color: var(--hover) !important;
+  }
+
+  button[class*="hover:bg-secondary"]:hover {
+    background-color: var(--hover-light) !important;
+  }
+
+  /* Add smooth scrolling to everything */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Enhanced bouncy scrolling for mobile */
+  * {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Bounce effect for scroll containers */
+  .overflow-auto, .overflow-y-auto, .overflow-x-auto {
+    overscroll-behavior: auto;
+    scroll-behavior: smooth;
+  }
+
+  /* Improved scroll snap for lists */
+  .snap-scroll {
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    overscroll-behavior-x: contain;
+  }
+
+  .snap-scroll > * {
+    scroll-snap-align: start;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--border));
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground));
+  }
+
+  /* Remove outline for non-keyboard focus */
+  :focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  /* Improve touch targets */
+  button, a, input, select, textarea {
+    touch-action: manipulation;
+  }
+}
+
+@layer utilities {
+  .glass-card {
+    @apply bg-background/80 backdrop-blur-lg border border-white/10 rounded-xl;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Theme color utilities */
+  .bg-nuumi-pink {
+    background-color: var(--nuumi-pink);
+  }
+
+  .text-nuumi-pink {
+    color: var(--nuumi-pink);
+  }
+
+  .border-nuumi-pink {
+    border-color: var(--nuumi-pink);
+  }
+
+  .hover\:bg-nuumi-pink:hover {
+    background-color: var(--nuumi-pink);
+  }
+
+  .hover\:text-nuumi-pink:hover {
+    color: var(--nuumi-pink);
+  }
+
+  .hover\:border-nuumi-pink:hover {
+    border-color: var(--nuumi-pink);
+  }
+
+  /* Overlay and hover utilities */
+  .bg-overlay {
+    background-color: var(--overlay);
+  }
+
+  .hover\:bg-overlay:hover {
+    background-color: var(--overlay);
+  }
+
+  .hover\:bg-hover:hover {
+    background-color: var(--hover);
+  }
+
+  .hover\:bg-hover-light:hover {
+    background-color: var(--hover-light);
+  }
+
+  /* Enhanced elastic scroll with bounce effect */
+  .elastic-scroll {
+    overscroll-behavior-y: auto;
+    overflow-y: auto;
+    scroll-snap-type: y proximity;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Triple bounce effect for scrolling */
+  .bounce-scroll {
+    scroll-behavior: smooth;
+    overscroll-behavior: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Remove border from any element */
+  .no-border {
+    border: none !important;
+  }
+
+  /* Seamless container styles */
+  .seamless-container {
+    @apply bg-transparent border-none shadow-none;
+  }
+}
+
+/* Animation keyframes */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+/* Enhanced bounce animation with easing */
+@keyframes enhancedBounce {
+  0%, 100% {
+    transform: translateY(0);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: translateY(-10px);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 0.4s ease-out forwards;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.3s ease-out forwards;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.5s ease-out forwards;
+  }
+
+  .animate-bounce-subtle {
+    animation: bounce 2s ease-in-out infinite;
+  }
+
+  /* Enhanced bounce animation utility */
+  .animate-bounce-enhanced {
+    animation: enhancedBounce 1s ease-in-out infinite;
+  }
+
+  .animate-delay-100 {
+    animation-delay: 100ms;
+  }
+
+  .animate-delay-200 {
+    animation-delay: 200ms;
+  }
+
+  .animate-delay-300 {
+    animation-delay: 300ms;
+  }
+
+  /* Bouncy transition timing function */
+  .transition-bounce {
+    transition-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  /* Triple easing for animations */
+  .transition-triple-ease {
+    transition-timing-function: cubic-bezier(0.65, 0, 0.35, 1);
+  }
+}
+
+/* Tab scroller improvements */
+.tab-scroller {
+  @apply flex overflow-x-auto snap-scroll no-scrollbar pb-2;
+  scroll-padding: 0 1rem;
+}
+
+.tab-scroller > * {
+  @apply snap-start flex-shrink-0;
+}
+
+/* Seamless components */
+.seamless-header {
+  @apply bg-transparent border-b-0 shadow-none;
+}
+
+.seamless-card {
+  @apply bg-transparent border-0 shadow-none;
+}
+
+/* Uniform button sizes for actions */
+.action-button {
+  @apply h-10 w-10 flex items-center justify-center rounded-full transition-colors;
+}
+
+/* Action button hover states */
+.dark-mode .action-button:hover {
+  background-color: var(--hover);
+}
+
+.action-button:hover {
+  background-color: var(--hover-light);
+}
